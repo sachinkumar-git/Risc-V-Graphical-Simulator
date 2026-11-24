@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="theme-color" content="#111316"/>
+        <title>RISC-V Studio — Interactive 3D Processor Simulator</title>
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <div id="help-message" class="d-none">
+            <p>
+                Welcome to <b>RISC&#8209;V Studio</b>, an interactive 3D processor laboratory for a 32&#8209;bit, single-cycle RISC&#8209;V datapath.
+                All 32-bit integer instructions are supported except the syscall and concurrency related instructions. The datapath is
+                closely based on the design described in <i>Computer Organization and Design: RISC&#8209;V Edition</i>.
+            </p>
+            <p>
+                Write RISC&#8209;V assembly in the left editor, set initial registers and data memory, then press Play or Step. The centre view
+                is a live 3D model of the datapath: active data paths glow cyan, control signals orange, branch and jump paths purple and
+                register write-back green. Drag to orbit, scroll to zoom, and click any component to inspect its purpose, live inputs and
+                outputs, and its role in the current instruction. The right inspector shows registers, memory, the decoded instruction and
+                every control signal, together with a step-by-step explanation of the executing instruction.
+            </p>
+            <p>
+                Use the <b>Examples</b> menu to load one of the bundled programs, and the import/export buttons to save a complete setup as
+                JSON. Radix and word-size choices apply to both the editors and the inspector. Use the <code>ebreak</code> instruction to
+                insert a breakpoint in the simulation.
+            </p>
+            <p>
+                You can view the source or contribute on <a href="https://github.com/alokmuskan/Risc-V-Graphical-Simulator" target="_blank">GitHub</a>.
+            </p>
+        </div>
+    </body>
+</html>
