@@ -1,0 +1,8 @@
+{
+    "name": "Fibonacci",
+    "description": "fib(10), computed iteratively",
+    "code": "# Fibonacci (RISC-V assembly, iterative)\n# fib(0) = 0, fib(1) = 1, fib(i) = fib(i-1) + fib(i-2)\n#\n# a0 = n\n# t0 = fib(i), t1 = fib(i+1)\n\n    li a0, 0xA          # n = 10\n    li t0, 0x0          # fib(0) = 0\n    li t1, 0x1          # fib(1) = 1\n    li t2, 0x0          # i = 0\n\nloop:\n    bge t2, a0, done          # i >= n -> finished\n    add t3, t0, t1            # next = fib(i) + fib(i+1)\n    mv  t0, t1                # fib(i)   = fib(i+1)\n    mv  t1, t3                # fib(i+1) = next\n    addi t2, t2, 0x1          # i++\n    j loop\n\ndone:\n    mv a0, t0                 # a0 = fib(10) = 0x37 = 55\n",
+    "memoryRadix": "hex",
+    "registerRadix": "hex",
+    "memoryWordSize": 32
+}

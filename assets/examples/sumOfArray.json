@@ -1,0 +1,9 @@
+{
+    "name": "Sum of Array",
+    "description": "Adds all elements and stores the total",
+    "code": "# Sum of Array (RISC-V assembly)\n# Adds every element of a[0] .. a[n-1]\n#\n# a0 = base address of the array\n# a1 = number of elements n\n# a2 = result: the sum\n\n    li a0, 0x0          # base address of the array\n    li a1, 0xA          # n = 10 elements\n    li t0, 0x0          # i = 0\n    li t1, 0x0          # sum = 0\n\nloop:\n    bge t0, a1, done          # i >= n -> finished\n    slli t2, t0, 0x2          # t2 = i * 4\n    add t2, a0, t2            # t2 = &a[i]\n    lw  t3, 0x0(t2)           # t3 = a[i]\n    add t1, t1, t3            # sum = sum + a[i]\n    addi t0, t0, 0x1          # i++\n    j loop\n\ndone:\n    mv a2, t1                 # a2 = the sum\n    slli t2, a1, 0x2          # t2 = n * 4\n    add t2, a0, t2            # address just after the array\n    sw  t1, 0x0(t2)           # store the sum after the array (address 0x28)\n",
+    "memoryRadix": "hex",
+    "registerRadix": "hex",
+    "memoryWordSize": 32,
+    "memory": "0x7\n0x3\n0x1\n0x5\n0x9\n0x2\n0x8\n0x4\n0x6\n0x0"
+}

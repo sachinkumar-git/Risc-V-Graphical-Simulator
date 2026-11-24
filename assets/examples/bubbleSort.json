@@ -1,0 +1,9 @@
+{
+    "name": "Bubble Sort",
+    "description": "The bubble sort algorithm",
+    "code": "# Bubble Sort (RISC-V assembly)\n# Sorts the array in place: a[0] .. a[n-1]\n#\n# a0 = base address of the array\n# a1 = number of elements n\n# t0 = i (outer loop), t1 = j (inner loop)\n\n    li a0, 0x0          # base address of the array\n    li a1, 0xA          # n = 10 elements\n    addi t0, a1, -1     # i = n - 1\n\nouter:                        # for i = n-1 down to 1\n    blt t0, zero, done        # i < 1 -> finished\n    li t1, 0x0                # j = 0\n\ninner:                        # for j = 0 .. i-1\n    bge t1, t0, endinner      # j >= i -> pass finished\n    slli t2, t1, 0x2          # t2 = j * 4\n    add t2, a0, t2            # t2 = &a[j]\n    lw  t3, 0x0(t2)           # t3 = a[j]\n    lw  t4, 0x4(t2)           # t4 = a[j+1]\n    bge t4, t3, noswap        # a[j+1] >= a[j] -> already in order, skip the swap\n    sw  t4, 0x0(t2)           # a[j]   = a[j+1]\n    sw  t3, 0x4(t2)           # a[j+1] = a[j]\nnoswap:\n    addi t1, t1, 0x1          # j++\n    j inner\n\nendinner:\n    addi t0, t0, -1           # i--\n    j outer\n\ndone:                         # the array in memory is now sorted\n",
+    "memoryRadix": "hex",
+    "registerRadix": "hex",
+    "memoryWordSize": 32,
+    "memory": "0x7\n0x3\n0x1\n0x5\n0x9\n0x2\n0x8\n0x4\n0x6\n0x0"
+}

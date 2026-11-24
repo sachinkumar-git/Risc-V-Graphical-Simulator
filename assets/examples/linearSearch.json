@@ -1,0 +1,9 @@
+{
+    "name": "Linear Search",
+    "description": "Finds the index of a value in the array",
+    "code": "# Linear Search (RISC-V assembly)\n# Searches for a key in a[0] .. a[n-1]\n#\n# a0 = base address of the array\n# a1 = number of elements n\n# a2 = key to search for\n# a3 = result: index of the key, or -1 if not found\n\n    li a0, 0x0          # base address of the array\n    li a1, 0xA          # n = 10 elements\n    li a2, 0x5          # key to search for\n    li t0, 0x0          # i = 0\n\nloop:\n    bge t0, a1, notfound     # i >= n -> the key is not in the array\n    slli t1, t0, 0x2         # t1 = i * 4\n    add t1, a0, t1           # t1 = &a[i]\n    lw  t2, 0x0(t1)          # t2 = a[i]\n    beq t2, a2, found        # a[i] == key -> found\n    addi t0, t0, 0x1         # i++\n    j loop\n\nfound:\n    mv a3, t0                # a3 = index of the key\n    j end\n\nnotfound:\n    li a3, -1                # a3 = -1 (negative numbers are written in decimal)\n\nend:\n",
+    "memoryRadix": "hex",
+    "registerRadix": "hex",
+    "memoryWordSize": 32,
+    "memory": "0x7\n0x3\n0x1\n0x5\n0x9\n0x2\n0x8\n0x4\n0x6\n0x0"
+}

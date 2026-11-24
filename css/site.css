@@ -1,0 +1,171 @@
+/*
+ * Design tokens. One neutral surface scale, one UI accent, and four signal colours that mean the
+ * same thing everywhere (3D wires, legend, inspector).
+ */
+:root {
+    color-scheme: dark;
+
+    --bg: #111316;
+    --surface: #17191d;
+    --surface-2: #1d2025;
+    --surface-3: #252930;
+    --border: #2a2e35;
+    --border-strong: #383d46;
+
+    --text: #d8dbe0;
+    --text-muted: #9198a2;
+    --text-faint: #646b75;
+
+    --accent: #5b9cf0;
+    --accent-weak: rgba(91, 156, 240, 0.14);
+    --danger: #e0625a;
+    --danger-weak: rgba(224, 98, 90, 0.12);
+    --success: #5fb47c;
+    --success-weak: rgba(95, 180, 124, 0.12);
+
+    --sig-data: #4fb0d8;
+    --sig-control: #d39b52;
+    --sig-branch: #9d86d6;
+    --sig-write: #5fb47c;
+
+    --radius: 6px;
+    --font-ui: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --font-mono: ui-monospace, "Cascadia Mono", "SF Mono", Consolas, "Liberation Mono", monospace;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-ui);
+    font-size: 13px;
+}
+
+#root {
+    min-height: 100vh;
+}
+
+::selection {
+    background: var(--accent-weak);
+}
+
+button, select, input {
+    font-family: inherit;
+}
+
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-strong) transparent;
+}
+
+*::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: var(--border-strong);
+    border: 3px solid transparent;
+    border-radius: 10px;
+    background-clip: content-box;
+}
+
+/* Flex helper kept from the original layout */
+.flex-grow-overflow {
+    flex-grow: 1;
+    min-height: 0;
+}
+
+/* Address tables are still used by the help content and legacy tables */
+.address-table {
+    font-family: var(--font-mono);
+    padding: 0;
+    margin: 0;
+}
+
+.address-table td {
+    padding: 5px;
+    margin: 0;
+}
+
+.address-table input {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+}
+
+.address-table td:nth-child(1) {
+    text-align: right;
+    white-space: nowrap;
+    width: 1px;
+}
+
+/* CodeMirror current-line and error-line decorations (set from JS) */
+.cm-sim-current-line {
+    background: var(--accent-weak) !important;
+    box-shadow: inset 2px 0 0 var(--accent);
+}
+
+.cm-sim-error-line {
+    background: var(--danger-weak) !important;
+    box-shadow: inset 2px 0 0 var(--danger);
+}
+
+/* Don't highlight the current line unless the editor is focused */
+.cm-editor:not(.cm-focused) .cm-activeLine {
+    background-color: inherit;
+}
+
+/* Help modal */
+.modal-content {
+    background: var(--surface);
+    border: 1px solid var(--border-strong);
+    border-radius: 8px;
+    color: var(--text);
+}
+
+.modal-header, .modal-footer {
+    border-color: var(--border);
+}
+
+.modal-title {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.modal-header .btn-close {
+    filter: invert(1) grayscale(100%) brightness(160%);
+}
+
+.modal-body {
+    line-height: 1.55;
+}
+
+.modal-body a {
+    color: var(--accent);
+}
+
+/* Toasts and tooltips */
+.tippy-box {
+    text-align: center;
+}
+
+.tippy-box hr {
+    margin: 5px 0;
+}
+
+.popper-warning-fix.dropdown-menu, .popper-warning-fix .dropdown-menu {
+    margin: 0 !important;
+}

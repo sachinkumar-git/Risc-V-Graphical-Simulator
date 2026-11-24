@@ -1,0 +1,9 @@
+{
+    "name": "Find Maximum",
+    "description": "Largest element of the array",
+    "code": "# Find Maximum (RISC-V assembly)\n# Finds the largest element of a[0] .. a[n-1]\n#\n# a0 = base address of the array\n# a1 = number of elements n\n# t0 = running maximum\n\n    li a0, 0x0          # base address of the array\n    li a1, 0xA          # n = 10 elements\n    lw  t0, 0x0(a0)     # max = a[0]\n    li  t1, 0x1         # i = 1\n\nloop:\n    bge t1, a1, done          # i >= n -> finished\n    slli t2, t1, 0x2          # t2 = i * 4\n    add t2, a0, t2            # t2 = &a[i]\n    lw  t3, 0x0(t2)           # t3 = a[i]\n    blt t3, t0, skip          # a[i] < max -> keep the old maximum\n    mv  t0, t3                # max = a[i]\nskip:\n    addi t1, t1, 0x1          # i++\n    j loop\n\ndone:\n    mv a0, t0                 # a0 = the maximum value\n",
+    "memoryRadix": "hex",
+    "registerRadix": "hex",
+    "memoryWordSize": 32,
+    "memory": "0x7\n0x3\n0x1\n0x5\n0x9\n0x2\n0x8\n0x4\n0x6\n0x0"
+}

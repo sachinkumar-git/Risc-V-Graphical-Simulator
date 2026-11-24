@@ -1,0 +1,9 @@
+{
+    "name": "Reverse Array",
+    "description": "Reverses the array in place",
+    "code": "# Reverse Array (RISC-V assembly)\n# Reverses a[0] .. a[n-1] in place with two pointers\n#\n# a0 = base address of the array\n# a1 = number of elements n\n# t0 = i (left pointer), t1 = j (right pointer)\n\n    li a0, 0x0          # base address of the array\n    li a1, 0xA          # n = 10 elements\n    li t0, 0x0          # i = 0\n    addi t1, a1, -1     # j = n - 1\n\nloop:\n    bge t0, t1, done          # i >= j -> finished\n    slli t2, t0, 0x2          # t2 = i * 4\n    add t2, a0, t2            # t2 = &a[i]\n    slli t3, t1, 0x2          # t3 = j * 4\n    add t3, a0, t3            # t3 = &a[j]\n    lw  t4, 0x0(t2)           # t4 = a[i]\n    lw  t5, 0x0(t3)           # t5 = a[j]\n    sw  t5, 0x0(t2)           # a[i] = a[j]\n    sw  t4, 0x0(t3)           # a[j] = a[i]\n    addi t0, t0, 0x1          # i++\n    addi t1, t1, -1           # j--\n    j loop\n\ndone:\n",
+    "memoryRadix": "hex",
+    "registerRadix": "hex",
+    "memoryWordSize": 32,
+    "memory": "0x7\n0x3\n0x1\n0x5\n0x9\n0x2\n0x8\n0x4\n0x6\n0x0"
+}

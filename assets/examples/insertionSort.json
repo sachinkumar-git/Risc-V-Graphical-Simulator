@@ -1,0 +1,9 @@
+{
+    "name": "Insertion Sort",
+    "description": "Sorts the array in place",
+    "code": "# Insertion Sort (RISC-V assembly)\n# Sorts the array in place: a[0] .. a[n-1]\n#\n# a0 = base address of the array\n# a1 = number of elements n\n# t0 = i, t3 = j, t2 = key\n\n    li a0, 0x0          # base address of the array\n    li a1, 0xA          # n = 10 elements\n    li t0, 0x1          # i = 1 (start at the second element)\n\nouter:                        # for i = 1 .. n-1\n    bge t0, a1, done\n    slli t1, t0, 0x2         # t1 = i * 4\n    add t1, a0, t1           # t1 = &a[i]\n    lw  t2, 0x0(t1)          # key = a[i]\n    addi t3, t0, -1          # j = i - 1\n\ninner:                        # while j >= 0 and a[j] > key\n    blt t3, zero, insert     # j < 0 -> insert the key\n    slli t4, t3, 0x2         # t4 = j * 4\n    add t4, a0, t4           # t4 = &a[j]\n    lw  t5, 0x0(t4)          # t5 = a[j]\n    bge t2, t5, insert       # key >= a[j] -> stop shifting\n    sw  t5, 0x4(t4)          # a[j+1] = a[j] (shift right)\n    addi t3, t3, -1          # j--\n    j inner\n\ninsert:                       # a[j+1] = key\n    addi t3, t3, 0x1         # j = j + 1\n    slli t4, t3, 0x2\n    add t4, a0, t4           # t4 = &a[j+1]\n    sw  t2, 0x0(t4)          # a[j+1] = key\n    addi t0, t0, 0x1         # i++\n    j outer\n\ndone:                         # the array in memory is now sorted\n",
+    "memoryRadix": "hex",
+    "registerRadix": "hex",
+    "memoryWordSize": 32,
+    "memory": "0x7\n0x3\n0x1\n0x5\n0x9\n0x2\n0x8\n0x4\n0x6\n0x0"
+}
