@@ -1,0 +1,255 @@
+.editorPanel {
+    height: 100%;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    overflow: hidden;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    height: 36px;
+    padding: 0 6px 0 12px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+}
+
+.header > div {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    min-width: 0;
+}
+
+.header h2 {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.header span {
+    font-size: 12px;
+    color: var(--text-faint);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.collapseButton, .collapsed button {
+    width: 24px;
+    height: 24px;
+    display: grid;
+    place-items: center;
+    border-radius: 4px;
+    border: none;
+    background: none;
+    color: var(--text-faint);
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.collapseButton:hover, .collapsed button:hover {
+    background: var(--surface-3);
+    color: var(--text);
+}
+
+.tabs {
+    display: flex;
+    gap: 2px;
+    padding: 0 8px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+}
+
+.tabs button {
+    padding: 8px 8px 7px;
+    border: none;
+    border-bottom: 2px solid transparent;
+    background: none;
+    color: var(--text-muted);
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.tabs button:hover:not(:disabled) {
+    color: var(--text);
+}
+
+.tabs button:disabled {
+    color: var(--text-faint);
+    cursor: default;
+}
+
+.tabs .tabActive {
+    color: var(--text);
+    border-bottom-color: var(--accent);
+}
+
+.errorBanner {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    padding: 8px 12px;
+    background: var(--danger-weak);
+    border-bottom: 1px solid rgba(224, 98, 90, 0.35);
+    color: var(--danger);
+    font-size: 12px;
+    flex-shrink: 0;
+    max-height: 130px;
+    overflow: auto;
+}
+
+.errorBanner svg {
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.errorBanner pre {
+    margin: 0;
+    white-space: pre-wrap;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 1.45;
+    color: #f0a19b;
+}
+
+.content {
+    flex-grow: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.codeEditor {
+    flex-grow: 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.codeEditor :global(.cm-editor) {
+    height: 100%;
+    font-size: 13px;
+    background: var(--surface) !important;
+}
+
+.codeEditor :global(.cm-scroller) {
+    font-family: var(--font-mono);
+    line-height: 1.55;
+}
+
+.codeEditor :global(.cm-gutters) {
+    background: var(--surface) !important;
+    border-right: 1px solid var(--border) !important;
+    color: var(--text-faint) !important;
+}
+
+.codeEditor :global(.cm-activeLineGutter) {
+    background: var(--surface-2) !important;
+}
+
+.editorBody {
+    flex-grow: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.scroll {
+    flex-grow: 1;
+    min-height: 0;
+    overflow: auto;
+}
+
+.toolbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+}
+
+.toolbar span {
+    margin-right: auto;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.toolbar select {
+    height: 26px;
+    padding: 0 6px;
+    border-radius: 4px;
+    border: 1px solid var(--border-strong);
+    background: var(--surface-2);
+    color: var(--text);
+    font-size: 12px;
+}
+
+.dataTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.dataTable td {
+    padding: 2px 12px;
+    border-bottom: 1px solid var(--border);
+}
+
+.regName {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    white-space: nowrap;
+    width: 1%;
+}
+
+.dataTable input {
+    width: 100%;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background: transparent;
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    padding: 3px 6px;
+    outline: none;
+}
+
+.dataTable input:hover:not(:disabled) {
+    border-color: var(--border);
+}
+
+.dataTable input:focus {
+    border-color: var(--accent);
+    background: var(--surface-2);
+}
+
+.dataTable input:disabled {
+    color: var(--text-faint);
+}
+
+.collapsed {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding-top: 6px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+}
+
+.collapsed span {
+    writing-mode: vertical-rl;
+    font-size: 12px;
+    color: var(--text-muted);
+}

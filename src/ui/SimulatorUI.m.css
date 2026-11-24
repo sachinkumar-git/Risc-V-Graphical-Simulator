@@ -1,0 +1,89 @@
+.app {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--bg);
+    color: var(--text);
+}
+
+.main {
+    flex-grow: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: clamp(300px, 24vw, 400px) minmax(0, 1fr) clamp(320px, 25vw, 400px);
+    gap: 8px;
+    padding: 8px;
+}
+
+.main[data-collapsed="true"] {
+    grid-template-columns: 36px minmax(0, 1fr) clamp(320px, 25vw, 400px);
+}
+
+.editorSlot,
+.sceneSlot,
+.inspectorSlot {
+    min-height: 0;
+    height: 100%;
+}
+
+.sceneSlot {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 1400px) {
+    .main {
+        grid-template-columns: 290px minmax(0, 1fr) 320px;
+    }
+
+    .main[data-collapsed="true"] {
+        grid-template-columns: 36px minmax(0, 1fr) 320px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .app {
+        height: auto;
+        min-height: 100vh;
+        overflow: auto;
+    }
+
+    .main,
+    .main[data-collapsed="true"] {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 0;
+        height: auto;
+    }
+
+    .editorSlot {
+        height: 340px;
+        flex: 0 0 auto;
+    }
+
+    .main[data-collapsed="true"] .editorSlot {
+        height: 40px;
+    }
+
+    .sceneSlot {
+        height: 460px;
+        flex: 0 0 auto;
+    }
+
+    .inspectorSlot {
+        height: 600px;
+        flex: 0 0 auto;
+    }
+}
+
+@media (max-width: 700px) {
+    .sceneSlot {
+        height: 380px;
+    }
+
+    .editorSlot {
+        height: 300px;
+    }
+}
